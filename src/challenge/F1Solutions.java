@@ -37,19 +37,22 @@ public class F1Solutions {
         return reverseString.trim();
     }
 
-    class Node {
-        public int value;
-        public challenge.Node left;
-        public challenge.Node right;
 
-        public Node(int v, challenge.Node l, challenge.Node r) {
+    // Solution to challenge two
+
+    static class Node {
+        public int value;
+        public Node left;
+        public Node right;
+
+        public Node(int v, Node l, Node r) {
             this.value = v;
             this.left = l;
             this.right = r;
         }
     }
 
-    public static void preOrder(challenge.Node root) {
+    public static void preOrder(Node root) {
         if (root == null) {
             return;
         }
@@ -58,30 +61,30 @@ public class F1Solutions {
         preOrder(root.right);
     }
 
-    public static challenge.Node balancedTree(ArrayList<Integer> inputList) {
+    public static Node balancedTree(ArrayList<Integer> inputList) {
         int mid = (inputList.size()) / 2;
 
         if (inputList.size() == 0) {
             return null;
         }
 
-        ArrayList<Integer> left = new ArrayList<Integer>();
+        ArrayList<Integer> left = new ArrayList<>();
         for (int i = 0; i < mid; i++) {
             left.add(inputList.get(i));
         }
 
-        ArrayList<Integer> right = new ArrayList<Integer>();
-        for (int j = mid + 1; j < inputList.size(); j++) {
-            right.add(inputList.get(j));
+        ArrayList<Integer> right = new ArrayList<>();
+        for (int i = mid + 1; i < inputList.size(); i++) {
+            right.add(inputList.get(i));
         }
 
-        return new challenge.Node(inputList.get(mid), balancedTree(left), balancedTree(right));
+        return new Node(inputList.get(mid), balancedTree(left), balancedTree(right));
     }
 
     public static void main(String[] args) {
 
         //run challenge zero
-        printFooBarBaz();
+//        printFooBarBaz();
 
 
         //run challenge one
